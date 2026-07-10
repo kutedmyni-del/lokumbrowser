@@ -3,22 +3,17 @@
 // script.js
 // ==========================
 
-// --------------------------
-// Smooth navbar background
-// --------------------------
-
+// Header effect
 const header = document.querySelector("header");
 
 window.addEventListener("scroll", () => {
 
-    if(window.scrollY > 40){
+    if (window.scrollY > 40) {
 
         header.style.background = "rgba(9,9,11,.9)";
         header.style.borderBottom = "1px solid rgba(255,255,255,.08)";
 
-    }
-
-    else{
+    } else {
 
         header.style.background = "rgba(9,9,11,.65)";
         header.style.borderBottom = "1px solid rgba(255,255,255,.05)";
@@ -27,15 +22,12 @@ window.addEventListener("scroll", () => {
 
 });
 
-// --------------------------
 // Reveal animation
-// --------------------------
+const observer = new IntersectionObserver((entries) => {
 
-const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry => {
 
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
 
             entry.target.classList.add("show");
 
@@ -43,158 +35,144 @@ const observer = new IntersectionObserver((entries)=>{
 
     });
 
-},{
-    threshold:.15
+}, {
+    threshold: 0.15
 });
 
-document.querySelectorAll("section").forEach(section=>{
+document.querySelectorAll("section").forEach(section => {
 
     section.classList.add("hidden");
-
     observer.observe(section);
 
 });
 
-// --------------------------
 // Browser tilt
-// --------------------------
-
 const browser = document.querySelector(".browser");
 
-if(browser){
+if (browser) {
 
-browser.addEventListener("mousemove",(e)=>{
+    browser.addEventListener("mousemove", (e) => {
 
-const rect = browser.getBoundingClientRect();
+        const rect = browser.getBoundingClientRect();
 
-const x = e.clientX - rect.left;
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-const y = e.clientY - rect.top;
+        const rotateY = (x - rect.width / 2) / 35;
+        const rotateX = -(y - rect.height / 2) / 35;
 
-const rotateY = (x - rect.width/2) / 35;
+        browser.style.transform =
+            `perspective(1200px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            translateY(-6px)`;
 
-const rotateX = -(y - rect.height/2) / 35;
+    });
 
-browser.style.transform =
-`perspective(1200px)
-rotateX(${rotateX}deg)
-rotateY(${rotateY}deg)
-translateY(-6px)`;
+    browser.addEventListener("mouseleave", () => {
 
-});
+        browser.style.transform =
+            "perspective(1200px) rotateX(0deg) rotateY(0deg)";
 
-browser.addEventListener("mouseleave",()=>{
-
-browser.style.transform =
-"perspective(1200px) rotateX(0deg) rotateY(0deg)";
-
-});
+    });
 
 }
 
-// --------------------------
 // Address typing
-// --------------------------
-
 const address = document.querySelector(".address");
 
-if(address){
+if (address) {
 
-const text = "lokumbrowser.site";
+    const text = "lokumbrowser.site";
 
-address.textContent = "";
+    address.textContent = "";
 
-let i = 0;
+    let i = 0;
 
-function type(){
+    function type() {
 
-    if(i < text.length){
+        if (i < text.length) {
 
-        address.textContent += text.charAt(i);
+            address.textContent += text.charAt(i);
 
-        i++;
+            i++;
 
-        setTimeout(type,70);
+            setTimeout(type, 70);
+
+        } else {
+
+            address.innerHTML += '<span class="cursor">|</span>';
+
+        }
 
     }
 
-    else{
-
-        address.innerHTML +=
-        '<span class="cursor">|</span>';
-
-    }
+    setTimeout(type, 600);
 
 }
 
-setTimeout(type,600);
-
-}
-
-// --------------------------
 // Smooth scrolling
-// --------------------------
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+    anchor.addEventListener("click", function (e) {
 
-anchor.addEventListener("click",(e)=>{
+        e.preventDefault();
 
-e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
 
-const target = document.querySelector(anchor.getAttribute("href"));
+        if (target) {
 
-if(target){
+            target.scrollIntoView({
 
-target.scrollIntoView({
+                behavior: "smooth"
 
-behavior:"smooth"
+            });
 
-});
+        }
 
-}
-
-});
+    });
 
 });
 
-// --------------------------
-// Fake loading animation
-// --------------------------
+// Fade in
+window.addEventListener("load", () => {
 
-window.addEventListener("load",()=>{
-
-document.body.style.opacity = "1";
+    document.body.style.opacity = "1";
 
 });
 
-// --------------------------
-// Form validation
-// --------------------------
+// ==========================
+// Tester Form
+// ==========================
 
 const form = document.querySelector("form");
 
-if(form){
+if (form) {
 
-form.addEventListener("submit",(e)=>{
+    form.addEventListener("submit", function () {
 
-const checkbox = document.querySelector(".agreement input");
+        const button = form.querySelector("button");
 
-if(!checkbox.checked){
+        button.disabled = true;
+        button.textContent = "Submitting...";
 
-e.preventDefault();
+        const popup = document.createElement("div");
 
-alert("Please accept the agreement.");
+        popup.className = "popup";
 
-return;
+        popup.innerHTML = `
+            <strong>✅ Application sent!</strong><br>
+            Thanks for applying to become a Lokum Browser tester.
+        `;
 
-}
+        document.body.appendChild(popup);
 
-const button = form.querySelector("button");
+        setTimeout(() => {
 
-button.disabled = true;
+            popup.classList.add("show-popup");
 
-button.textContent = "Submitting...";
+        }, 10);
 
-});
+    });
 
 }
