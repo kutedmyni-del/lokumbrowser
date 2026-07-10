@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Lokum Browser</title>
 
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
 <header>
 
-    <div class="logo">
-        <h2>LOKUM</h2>
-    </div>
+    <a class="logo" href="#">
+        LOKUM
+    </a>
 
     <nav>
 
         <a href="#features">Features</a>
         <a href="#roadmap">Roadmap</a>
         <a href="#tester">Tester Program</a>
+        <a href="https://github.com/YOUR_USERNAME/LokumBrowser" target="_blank">GitHub</a>
 
     </nav>
 
@@ -32,19 +38,24 @@
 
 <section class="hero">
 
-    <div class="hero-content">
+    <div class="hero-text">
 
-        <p class="small-text">
-            Lightweight Browser
-        </p>
+        <span class="tag">
+            STILL IN DEVELOPMENT
+        </span>
 
         <h1>
-            Built for Browsing.
+            Built for browsing.
         </h1>
 
-        <p class="hero-description">
-            Browsers became heavier.<br>
+        <p>
+
+            Browsers became heavier.
+
+            <br><br>
+
             We decided not to.
+
         </p>
 
         <a href="#tester" class="button">
@@ -53,27 +64,78 @@
 
     </div>
 
-    <div class="browser-preview">
+    <div class="hero-image">
 
-        <div class="browser-window">
+        <div class="browser">
 
             <div class="browser-top">
 
-                <span></span>
-                <span></span>
-                <span></span>
+                <div class="dots">
 
-                <div class="address-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+                <div class="address">
+
                     lokumbrowser.site
+
                 </div>
 
             </div>
 
-            <div class="browser-body">
+            <img src="assets/browser.png" alt="Lokum Browser">
 
-                <img src="assets/browser.png" alt="Lokum Browser">
+        </div>
 
-            </div>
+    </div>
+
+</section>
+
+<section class="why">
+
+    <h2>
+        Why Lokum?
+    </h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>⚡ Lightweight</h3>
+
+            <p>
+
+                Built with efficiency in mind instead of unnecessary background clutter.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>🎯 Focused</h3>
+
+            <p>
+
+                A browser should browse.
+                Not try to become everything else.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>💜 Community</h3>
+
+            <p>
+
+                Early testers directly influence future releases.
+
+            </p>
 
         </div>
 
@@ -83,49 +145,22 @@
 
 <section id="features">
 
-    <h2>Why Lokum?</h2>
+    <h2>
 
-    <div class="cards">
+        Features
 
-        <div class="card">
-            <h3>⚡ Lightweight</h3>
-            <p>
-                Built with efficiency in mind instead of unnecessary background features.
-            </p>
-        </div>
+    </h2>
 
-        <div class="card">
-            <h3>🚀 Fast</h3>
-            <p>
-                Focused on delivering a responsive browsing experience.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>💜 Community Driven</h3>
-            <p>
-                Early testers help shape every release before launch.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="feature-list">
-
-    <h2>Main Features</h2>
-
-    <div class="grid">
+    <div class="feature-grid">
 
         <div>Bookmarks</div>
-        <div>Password Manager</div>
         <div>History</div>
-        <div>Incognito Mode</div>
-        <div>Picture in Picture</div>
+        <div>Password Manager</div>
         <div>Download Manager</div>
-        <div>Search Suggestions</div>
+        <div>Picture-in-Picture</div>
+        <div>Incognito</div>
         <div>Ad Blocking</div>
+        <div>Search Suggestions</div>
 
     </div>
 
@@ -133,9 +168,13 @@
 
 <section id="roadmap">
 
-    <h2>Roadmap</h2>
+    <h2>
 
-    <div class="roadmap">
+        Roadmap
+
+    </h2>
+
+    <div class="timeline">
 
         <div class="done">
             ✔ Alpha Development
@@ -159,49 +198,76 @@
 
 <section id="tester">
 
-    <h2>Become an Early Tester</h2>
+    <h2>
 
-    <p>
-        Lokum Browser is currently in active development.
-        We're looking for a small group of people to help test upcoming builds before the public release.
+        Become an Early Tester
+
+    </h2>
+
+    <p class="tester-description">
+
+        Lokum Browser is currently under active development.
+
+        <br>
+
+        Apply below if you'd like to help test future builds before the public release.
+
     </p>
 
-    <form action="https://formsubmit.co/YOUR_EMAIL" method="POST">
+    <form action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
+
+        <input
+            type="hidden"
+            name="_subject"
+            value="New Lokum Tester Application">
+
+        <input
+            type="hidden"
+            name="_captcha"
+            value="false">
 
         <input
             type="text"
             name="Name"
-            placeholder="Name"
+            placeholder="Your name"
             required>
 
         <input
             type="email"
             name="Email"
-            placeholder="Email Address"
+            placeholder="Email address"
             required>
 
         <input
             type="text"
             name="Windows Version"
-            placeholder="Windows Version"
+            placeholder="Windows Version (10, 11...)"
             required>
 
         <textarea
             name="Reason"
-            placeholder="Why do you want to test Lokum?"
             rows="6"
+            placeholder="Why do you want to become a tester?"
             required></textarea>
 
-        <label class="checkbox">
+        <label class="agreement">
 
-            <input type="checkbox" required>
+            <input
+                type="checkbox"
+                required>
 
-            By submitting this application, you agree that we may contact you by email regarding the Lokum Browser tester program.
+            <span>
+
+                By submitting this application, you agree that we may contact you by email regarding the Lokum Browser tester program.
+
+            </span>
 
         </label>
 
         <button type="submit">
-            Become an Early Tester
+
+            Apply
+
         </button>
 
     </form>
@@ -210,10 +276,16 @@
 
 <footer>
 
-    <h3>Lokum Browser</h3>
+    <h3>
+
+        LOKUM
+
+    </h3>
 
     <p>
+
         Built for browsing.
+
     </p>
 
     <div class="footer-links">
@@ -223,9 +295,16 @@
 
     </div>
 
+    <small>
+
+        © 2026 Lokum Browser. All rights reserved.
+
+    </small>
+
 </footer>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
