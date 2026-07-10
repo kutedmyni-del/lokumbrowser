@@ -785,3 +785,43 @@ body{
     }
 
 }
+
+.popup{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    width:320px;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    background:#151518;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+
+    opacity:0;
+
+    transform:translateY(20px);
+
+    transition:.35s;
+
+    z-index:9999;
+
+}
+
+.show-popup{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
