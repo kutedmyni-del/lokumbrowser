@@ -744,3 +744,44 @@ footer small{
     }
 
 }
+.hidden{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:.8s ease;
+
+}
+
+.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+body{
+
+    opacity:0;
+
+    transition:.5s;
+
+}
+
+.cursor{
+
+    animation:blink 1s infinite;
+
+}
+
+@keyframes blink{
+
+    50%{
+
+        opacity:0;
+
+    }
+
+}
