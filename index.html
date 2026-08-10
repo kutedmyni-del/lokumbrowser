@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lokum Browser — a focused Windows web browser currently in development.">
+<title>Lokum Browser</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="site-header">
+  <a class="logo" href="#top" aria-label="Lokum home"><img class="logo-image" src="lokum-logo.png" alt=""><span>LOKUM</span></a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#features">Features</a><a href="#roadmap">Roadmap</a><a href="#tester">Tester Program</a>
+  </nav>
+  <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span></span>WINDOWS BROWSER · IN DEVELOPMENT</div>
+    <h1>A browser that<br><em>stays out of your way.</em></h1>
+    <p class="hero-lead">Lokum is a Windows browser that keeps everyday browsing simple.</p>
+    <div class="hero-actions">
+      <a href="#tester" class="button button-primary">Become a tester <span>→</span></a>
+      <a href="#features" class="button button-quiet">See what's inside</a>
+    </div>
+    <div class="hero-meta"><span>Windows 10 / 11</span><span class="meta-dot"></span><span>Currently in alpha</span></div>
+  </div>
+  <div class="browser-stage">
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="window-controls"><span></span><span></span><span></span></div>
+        <div class="browser-tab"><span class="tab-icon">L</span><span>Lokum</span><span class="tab-close">×</span></div>
+        <div class="new-tab">+</div>
+        <div class="address-bar"><span class="address-lock">⌁</span>lokumbrowser.site</div>
+        <div class="chrome-actions"><span>☆</span><span>⋮</span></div>
+      </div>
+      <div class="browser-page">
+        <div class="browser-page-inner">
+          <div class="preview-logo">LOKUM</div>
+          <div class="preview-title">Browse without<br>the clutter.</div>
+          <div class="preview-search">Search the web <span>⌕</span></div>
+          <div class="preview-links"><span>Bookmarks</span><span>History</span><span>Downloads</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="statement">
+  <p class="section-kicker">THE IDEA</p>
+  <h2>A simple browser.<br><span>Still being built.</span></h2>
+  <p class="statement-copy">Lokum is still in development. I'm building the features I use most and testing them as I go.</p>
+</section>
+
+<section class="section" id="features">
+  <div class="section-heading">
+    <div><p class="section-kicker">FEATURES</p><h2>The essentials,<br>already here.</h2></div>
+    <p>Some of the features currently available in Lokum.</p>
+  </div>
+  <div class="feature-list">
+    <article class="feature-item"><span>01</span><div><h3>Bookmarks</h3><p>Keep the pages you actually want to come back to.</p></div></article>
+    <article class="feature-item"><span>02</span><div><h3>History</h3><p>Find where you've been without digging through clutter.</p></div></article>
+    <article class="feature-item"><span>03</span><div><h3>Password Manager</h3><p>Keep saved login information available when you need it.</p></div></article>
+    <article class="feature-item"><span>04</span><div><h3>Downloads</h3><p>See and manage the files you've downloaded.</p></div></article>
+    <article class="feature-item"><span>05</span><div><h3>Picture-in-Picture</h3><p>Keep video visible while you move around the web.</p></div></article>
+    <article class="feature-item"><span>06</span><div><h3>Incognito</h3><p>Open a private browsing window when you need one.</p></div></article>
+    <article class="feature-item"><span>07</span><div><h3>Ad Blocking</h3><p>Reduce unwanted advertising while you browse.</p></div></article>
+    <article class="feature-item"><span>08</span><div><h3>Search Suggestions</h3><p>Get useful suggestions while entering a search.</p></div></article>
+  </div>
+</section>
+
+<section class="section tester" id="tester">
+  <div class="tester-intro">
+    <p class="section-kicker">EARLY ACCESS</p>
+    <h2>Want to try<br>Lokum early?</h2>
+    <p>Lokum is still in development. If you want to try it for a few hours and send me some feedback, you can apply below.</p>
+    <div class="tester-note"><span class="status-dot"></span>Tester applications are open</div>
+  </div>
+  <div class="form-card">
+    <form action="https://formsubmit.co/metozini@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New Lokum Tester Application">
+      <input type="hidden" name="_captcha" value="false">
+      <div class="field"><label for="name">Name</label><input id="name" type="text" name="Name" placeholder="Your name" required></div>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" name="Email" placeholder="Email address" required></div>
+      <div class="field"><label for="windows">Windows version</label><input id="windows" type="text" name="Windows Version" placeholder="Windows 10, Windows 11..." required></div>
+      <div class="field"><label for="reason">Why do you want to test Lokum?</label><textarea id="reason" name="Reason" rows="5" placeholder="Tell me a little about what you'd like to test." required></textarea></div>
+      <label class="agreement"><input type="checkbox" required><span>By submitting this application, you agree that we may contact you by email regarding the Lokum Browser tester program.</span></label>
+      <button class="submit-button" type="submit">Apply to test Lokum <span>→</span></button>
+    </form>
+  </div>
+</section>
+
+<section class="section" id="roadmap">
+  <div class="section-heading">
+    <div><p class="section-kicker">DEVELOPMENT</p><h2>Where Lokum<br>is going.</h2></div>
+    <p>The current plan for Lokum.</p>
+  </div>
+  <div class="roadmap-track">
+    <div class="roadmap-step complete"><span class="roadmap-line"></span><span class="roadmap-dot">✓</span><p>01</p><h3>Alpha</h3><small>Current</small></div>
+    <div class="roadmap-step current"><span class="roadmap-line"></span><span class="roadmap-dot"></span><p>02</p><h3>Testing</h3><small>Now</small></div>
+    <div class="roadmap-step"><span class="roadmap-line"></span><span class="roadmap-dot"></span><p>03</p><h3>Public Beta</h3><small>Next</small></div>
+    <div class="roadmap-step"><span class="roadmap-dot"></span><p>04</p><h3>Version 1.0</h3><small>Planned</small></div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div><a class="logo" href="#top" aria-label="Lokum home"><img class="logo-image" src="lokum-logo.png" alt=""><span>LOKUM</span></a><p>A browser for Windows.</p></div>
+  <div class="footer-links"><a href="#features">Features</a><a href="#tester">Tester Program</a></div>
+  <small>© 2026 Lokum Browser. All rights reserved.</small>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
