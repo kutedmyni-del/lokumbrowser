@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lokum Browser</title>
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #0d0d0d;
+    --fg: #f5f5f0;
+    --muted: #8a8a80;
+    --accent: #ff3b1f;
+    --accent2: #00e5a0;
+    --card: #161616;
+    --border: #2a2a2a;
+    --hard: 4px 4px 0 #ff3b1f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* thick grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--bg);
+    border-bottom: 3px solid var(--fg);
+  }
+  .logo {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .lang-btn {
+    background: var(--bg);
+    border: 3px solid var(--fg);
+    color: var(--fg);
+    padding: 0.45rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    transition: all 0.15s;
+  }
+  .lang-btn:hover {
+    background: var(--fg);
+    color: var(--bg);
+  }
+  .nav-cta {
+    background: var(--accent);
+    color: #fff;
+    border: 3px solid var(--fg);
+    padding: 0.45rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 var(--fg);
+    transition: all 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .nav-cta:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--fg);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 7rem 2rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--accent2);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 0.9rem;
+    border: 3px solid var(--fg);
+    margin-bottom: 1.8rem;
+    width: fit-content;
+  }
+  .hero h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(3.2rem, 9vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    max-width: 12ch;
+  }
+  .hero h1 .accent {
+    color: var(--accent);
+  }
+  .hero-lead {
+    font-size: 1.25rem;
+    color: var(--muted);
+    max-width: 36ch;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-main {
+    background: var(--accent);
+    color: #fff;
+    border: 3px solid var(--fg);
+    padding: 1rem 2rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    box-shadow: 5px 5px 0 var(--fg);
+    transition: all 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-main:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--fg);
+  }
+  .btn-outline {
+    background: var(--bg);
+    color: var(--fg);
+    border: 3px solid var(--fg);
+    padding: 1rem 2rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    box-shadow: 5px 5px 0 var(--border);
+    transition: all 0.15s;
+  }
+  .btn-outline:hover {
+    background: var(--fg);
+    color: var(--bg);
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--border);
+  }
+
+  /* STRIP */
+  .strip {
+    background: var(--accent);
+    color: #fff;
+    padding: 1rem 0;
+    border-top: 3px solid var(--fg);
+    border-bottom: 3px solid var(--fg);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+  .strip-inner {
+    display: flex;
+    gap: 2.5rem;
+    width: max-content;
+    animation: slide 50s linear infinite;
+  }
+  .strip-inner span {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .strip-inner span::after {
+    content: '■';
+    margin-left: 2.5rem;
+    opacity: 0.5;
+  }
+  @keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 6rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .section h2 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    max-width: 16ch;
+  }
+  .section-desc {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 42ch;
+    margin-bottom: 3rem;
+  }
+
+  /* FEATURES - brutal cards */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+  @media (max-width: 700px) {
+    .feature-grid { grid-template-columns: 1fr; }
+  }
+  .feature-card {
+    background: var(--card);
+    border: 3px solid var(--fg);
+    padding: 1.6rem;
+    box-shadow: 5px 5px 0 var(--accent);
+    transition: all 0.15s;
+  }
+  .feature-card:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--accent);
+  }
+  .feature-card.wide {
+    grid-column: span 2;
+    box-shadow: 5px 5px 0 var(--accent2);
+  }
+  .feature-card.wide:hover {
+    box-shadow: 2px 2px 0 var(--accent2);
+  }
+  @media (max-width: 700px) {
+    .feature-card.wide { grid-column: span 1; }
+  }
+  .feature-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .feature-card h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+  .feature-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* MOTTOS */
+  .motto-section {
+    background: var(--fg);
+    color: var(--bg);
+    padding: 5rem 2rem;
+    border-top: 3px solid var(--bg);
+    border-bottom: 3px solid var(--bg);
+    position: relative;
+    z-index: 1;
+  }
+  .motto-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .motto-inner h2 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    max-width: 14ch;
+  }
+  .motto-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  .motto-chip {
+    background: var(--bg);
+    color: var(--fg);
+    border: 3px solid var(--bg);
+    padding: 0.7rem 1.2rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.15s;
+  }
+  .motto-chip:hover {
+    background: var(--accent);
+    border-color: var(--bg);
+    color: #fff;
+  }
+
+  /* CUSTOM */
+  .custom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 700px) {
+    .custom-grid { grid-template-columns: 1fr; }
+  }
+  .custom-box {
+    background: var(--card);
+    border: 3px solid var(--fg);
+    padding: 1.6rem;
+    box-shadow: 5px 5px 0 var(--accent2);
+  }
+  .custom-box h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .swatch-row {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .swatch {
+    width: 44px;
+    height: 44px;
+    border: 3px solid var(--fg);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .swatch:hover, .swatch.active {
+    transform: scale(1.1);
+    box-shadow: 3px 3px 0 var(--fg);
+  }
+  .wall-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+  .wall {
+    aspect-ratio: 1.3;
+    border: 3px solid var(--fg);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .wall:hover, .wall.active {
+    box-shadow: 3px 3px 0 var(--accent);
+    transform: translate(-1px, -1px);
+  }
+
+  /* FINAL */
+  .final {
+    text-align: center;
+    padding: 7rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .final h2 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin-bottom: 1.2rem;
+  }
+  .final p {
+    color: var(--muted);
+    font-size: 1.15rem;
+    margin-bottom: 2.5rem;
+    max-width: 28ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 3px solid var(--fg);
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+  }
+  footer strong {
+    color: var(--fg);
+    font-family: 'Archivo Black', sans-serif;
+    text-transform: uppercase;
+  }
+
+  /* LANG */
+  body.tr .inline-en { display: none; }
+  body.tr .inline-tr { display: inline; }
+  .inline-tr { display: none; }
+  .inline-en { display: inline; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Lokum</div>
+  <div class="nav-right">
+    <button class="lang-btn" onclick="toggleLang()">TR / EN</button>
+    <a class="nav-cta" href="https://apps.microsoft.com/detail/9nb2dwr7945r" target="_blank" rel="noopener">
+      <span class="inline-en">Get Lokum</span>
+      <span class="inline-tr">Lokum’u Al</span>
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">
+    <span class="inline-en">Chromium · Lightweight · Human</span>
+    <span class="inline-tr">Chromium · Hafif · İnsan</span>
+  </div>
+  <h1>
+    <span class="inline-en">Made by a human,<br><span class="accent">made for a human.</span></span>
+    <span class="inline-tr">Bir insan tarafından,<br><span class="accent">bir insan için.</span></span>
+  </h1>
+  <p class="hero-lead">
+    <span class="inline-en">Less weight. More Lokum. A browser made for humans — protected, private, and completely yours.</span>
+    <span class="inline-tr">Daha az ağırlık. Daha çok Lokum. İnsanlar için yapılmış tarayıcı — korumalı, özel ve tamamen senin.</span>
+  </p>
+  <div class="hero-actions">
+    <a class="btn-main" href="https://apps.microsoft.com/detail/9nb2dwr7945r" target="_blank" rel="noopener">
+      <span class="inline-en">Download</span>
+      <span class="inline-tr">İndir</span>
+    </a>
+    <button class="btn-outline" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+      <span class="inline-en">Features</span>
+      <span class="inline-tr">Özellikler</span>
+    </button>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner">
+    <span>Made for humans</span>
+    <span>Browse differently</span>
+    <span>Less weight. More Lokum</span>
+    <span>The web without the clutter</span>
+    <span>See the web for what it is</span>
+    <span>Not everything you see is human-made</span>
+    <span>You decide what you see</span>
+    <span>Think before you click</span>
+    <span>Suspicious doesn’t mean invisible</span>
+    <span>Protection, not paranoia</span>
+    <span>Your browsing is yours</span>
+    <span>Make it yours</span>
+    <span>Your tab. Your atmosphere</span>
+    <span>Search without the noise</span>
+    <span>Made for more people</span>
+    <span>Get there faster</span>
+    <span>Your browser. Your way</span>
+    <span>Made for humans</span>
+    <span>Browse differently</span>
+    <span>Less weight. More Lokum</span>
+    <span>The web without the clutter</span>
+    <span>See the web for what it is</span>
+    <span>Not everything you see is human-made</span>
+    <span>You decide what you see</span>
+    <span>Think before you click</span>
+    <span>Suspicious doesn’t mean invisible</span>
+    <span>Protection, not paranoia</span>
+    <span>Your browsing is yours</span>
+    <span>Make it yours</span>
+    <span>Your tab. Your atmosphere</span>
+    <span>Search without the noise</span>
+    <span>Made for more people</span>
+    <span>Get there faster</span>
+    <span>Your browser. Your way</span>
+  </div>
+</div>
+
+<section class="section" id="features">
+  <div class="section-label">
+    <span class="inline-en">01 — Features</span>
+    <span class="inline-tr">01 — Özellikler</span>
+  </div>
+  <h2>
+    <span class="inline-en">Eighteen things that actually matter.</span>
+    <span class="inline-tr">Gerçekten önemli olan on sekiz şey.</span>
+  </h2>
+  <p class="section-desc">
+    <span class="inline-en">No bloat. No noise. Just protection, control, and a browser that feels like yours.</span>
+    <span class="inline-tr">Şişkinlik yok. Gürültü yok. Sadece koruma, kontrol ve sana ait gibi hissettiren bir tarayıcı.</span>
+  </p>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-num">01</div>
+      <h3>Ad Shield</h3>
+      <p>
+        <span class="inline-en">Ads disappear before they reach your eyes. Quietly. Completely.</span>
+        <span class="inline-tr">Reklamlar gözüne ulaşmadan yok olur. Sessizce. Tamamen.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">02</div>
+      <h3>AI Shield</h3>
+      <p>
+        <span class="inline-en">AI-generated content is flagged so you know what you’re looking at.</span>
+        <span class="inline-tr">Yapay zekâ içerikleri işaretlenir. Ne baktığını bilirsin.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">03</div>
+      <h3>AI Image Detection</h3>
+      <p>
+        <span class="inline-en">Instantly tells you whether an image was made by a human or not.</span>
+        <span class="inline-tr">Bir görselin insan yapımı olup olmadığını anında söyler.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">04</div>
+      <h3>AI Image Blur</h3>
+      <p>
+        <span class="inline-en">Suspicious images start blurred. You choose when to reveal them.</span>
+        <span class="inline-tr">Şüpheli görseller bulanık başlar. Ne zaman açacağına sen karar verirsin.</span>
+      </p>
+    </div>
+    <div class="feature-card wide">
+      <div class="feature-num">05</div>
+      <h3>See it anyways</h3>
+      <p>
+        <span class="inline-en">Protection stays on. Curiosity stays free. One click to look if you want.</span>
+        <span class="inline-tr">Koruma açık kalır. Merak özgür kalır. İstersen bakmak için tek tık.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">06</div>
+      <h3>AI Shield Toggle</h3>
+      <p>
+        <span class="inline-en">Turn the whole AI layer off or on whenever you want. Your call.</span>
+        <span class="inline-tr">AI katmanını istediğin zaman kapat veya aç. Senin kararın.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">07</div>
+      <h3>Scam Shield</h3>
+      <p>
+        <span class="inline-en">Known scam domains are blocked before they can do damage.</span>
+        <span class="inline-tr">Bilinen dolandırıcılık siteleri zarar vermeden engellenir.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">08</div>
+      <h3>Scam Overlay</h3>
+      <p>
+        <span class="inline-en">When something looks off, a clear warning sits on top of the page.</span>
+        <span class="inline-tr">Bir şey ters göründüğünde sayfanın üstüne net bir uyarı gelir.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">09</div>
+      <h3>Phishing Protection</h3>
+      <p>
+        <span class="inline-en">Fake login pages and lookalike domains get stopped early.</span>
+        <span class="inline-tr">Sahte giriş sayfaları ve benzer domainler erken yakalanır.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">10</div>
+      <h3>Built-in Privacy</h3>
+      <p>
+        <span class="inline-en">Trackers and fingerprinting attempts are cut off by default.</span>
+        <span class="inline-tr">İzleyiciler ve parmak izi denemeleri varsayılan olarak kesilir.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">11</div>
+      <h3>Custom New Tab</h3>
+      <p>
+        <span class="inline-en">Your new tab is no longer empty. It’s your atmosphere.</span>
+        <span class="inline-tr">Yeni sekme artık boş değil. Senin atmosferin.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">12</div>
+      <h3>Wallpaper Customization</h3>
+      <p>
+        <span class="inline-en">Pick a background that feels like home every time you open a tab.</span>
+        <span class="inline-tr">Her sekme açtığında kendini evinde hissettirecek bir arka plan seç.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">13</div>
+      <h3>Color Customization</h3>
+      <p>
+        <span class="inline-en">Tune the accent colors until the browser feels made for your eyes.</span>
+        <span class="inline-tr">Vurgu renklerini gözüne göre ayarla. Tarayıcı sana özel olsun.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">14</div>
+      <h3>Search Suggestion Filtering</h3>
+      <p>
+        <span class="inline-en">Suggestions without the junk. Search stays useful and quiet.</span>
+        <span class="inline-tr">Önerilerde çöp yok. Arama yararlı ve sessiz kalır.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">15</div>
+      <h3>Türkçe + English</h3>
+      <p>
+        <span class="inline-en">Full interface in both languages. Same speed, same quality.</span>
+        <span class="inline-tr">Arayüz iki dilde de tam. Aynı hız, aynı kalite.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">16</div>
+      <h3>Fast Browsing</h3>
+      <p>
+        <span class="inline-en">Lightweight by design. Pages load faster because nothing unnecessary runs.</span>
+        <span class="inline-tr">Hafif tasarlandı. Gereksiz hiçbir şey çalışmadığı için sayfalar daha hızlı açılır.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">17</div>
+      <h3>Lightweight Design</h3>
+      <p>
+        <span class="inline-en">No feature bloat. Every piece exists because it earns its place.</span>
+        <span class="inline-tr">Özellik şişkinliği yok. Her parça yerini hak ettiği için var.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">18</div>
+      <h3>Chromium Compatibility</h3>
+      <p>
+        <span class="inline-en">The web you already know — just cleaner, safer, and quieter.</span>
+        <span class="inline-tr">Zaten bildiğin web — sadece daha temiz, daha güvenli ve daha sessiz.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="motto-section">
+  <div class="motto-inner">
+    <h2>
+      <span class="inline-en">Things we actually believe.</span>
+      <span class="inline-tr">Gerçekten inandığımız şeyler.</span>
+    </h2>
+    <div class="motto-list">
+      <div class="motto-chip">Made for humans.</div>
+      <div class="motto-chip">Browse differently.</div>
+      <div class="motto-chip">Less weight. More Lokum.</div>
+      <div class="motto-chip">The web without the clutter.</div>
+      <div class="motto-chip">See the web for what it is.</div>
+      <div class="motto-chip">Not everything you see is human-made.</div>
+      <div class="motto-chip">You decide what you see.</div>
+      <div class="motto-chip">Think before you click.</div>
+      <div class="motto-chip">Suspicious doesn’t mean invisible.</div>
+      <div class="motto-chip">Protection, not paranoia.</div>
+      <div class="motto-chip">Your browsing is yours.</div>
+      <div class="motto-chip">Make it yours.</div>
+      <div class="motto-chip">Your tab. Your atmosphere.</div>
+      <div class="motto-chip">Search without the noise.</div>
+      <div class="motto-chip">Made for more people.</div>
+      <div class="motto-chip">Get there faster.</div>
+      <div class="motto-chip">Your browser. Your way.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">
+    <span class="inline-en">02 — Make it yours</span>
+    <span class="inline-tr">02 — Sana ait yap</span>
+  </div>
+  <h2>
+    <span class="inline-en">Your tab. Your atmosphere.</span>
+    <span class="inline-tr">Senin sekmen. Senin atmosferin.</span>
+  </h2>
+  <p class="section-desc">
+    <span class="inline-en">Wallpapers and colors are not afterthoughts. They’re how Lokum becomes yours.</span>
+    <span class="inline-tr">Duvar kağıtları ve renkler sonradan eklenmiş şeyler değil. Lokum’un sana ait olmasının yolu.</span>
+  </p>
+  <div class="custom-grid">
+    <div class="custom-box">
+      <h3>
+        <span class="inline-en">Wallpapers</span>
+        <span class="inline-tr">Duvar Kağıtları</span>
+      </h3>
+      <div class="wall-row">
+        <div class="wall active" style="background: #1a1a1a" onclick="pickWall(this)"></div>
+        <div class="wall" style="background: linear-gradient(135deg, #2a1a1a, #1a0a0a)" onclick="pickWall(this)"></div>
+        <div class="wall" style="background: linear-gradient(135deg, #1a2a1a, #0a1a0a)" onclick="pickWall(this)"></div>
+        <div class="wall" style="background: linear-gradient(135deg, #1a1a2a, #0a0a1a)" onclick="pickWall(this)"></div>
+        <div class="wall" style="background: linear-gradient(135deg, #2a2a1a, #1a1a0a)" onclick="pickWall(this)"></div>
+        <div class="wall" style="background: #111" onclick="pickWall(this)"></div>
+        <div class="wall" style="background: linear-gradient(135deg, #2a1a2a, #1a0a1a)" onclick="pickWall(this)"></div>
+        <div class="wall" style="background: linear-gradient(135deg, #1a2a2a, #0a1a1a)" onclick="pickWall(this)"></div>
+      </div>
+    </div>
+    <div class="custom-box">
+      <h3>
+        <span class="inline-en">Accent</span>
+        <span class="inline-tr">Vurgu</span>
+      </h3>
+      <div class="swatch-row">
+        <div class="swatch active" style="background: #ff3b1f" onclick="pickColor(this, '#ff3b1f')"></div>
+        <div class="swatch" style="background: #00e5a0" onclick="pickColor(this, '#00e5a0')"></div>
+        <div class="swatch" style="background: #ffcc00" onclick="pickColor(this, '#ffcc00')"></div>
+        <div class="swatch" style="background: #3b82f6" onclick="pickColor(this, '#3b82f6')"></div>
+        <div class="swatch" style="background: #a855f7" onclick="pickColor(this, '#a855f7')"></div>
+        <div class="swatch" style="background: #f43f5e" onclick="pickColor(this, '#f43f5e')"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="get">
+  <h2>
+    <span class="inline-en">Ready to browse<br>differently?</span>
+    <span class="inline-tr">Farklı gezinmeye<br>hazır mısın?</span>
+  </h2>
+  <p>
+    <span class="inline-en">Less weight. More Lokum. Take the web back.</span>
+    <span class="inline-tr">Daha az ağırlık. Daha çok Lokum. Web’i geri al.</span>
+  </p>
+  <a class="btn-main" href="https://apps.microsoft.com/detail/9nb2dwr7945r" target="_blank" rel="noopener" style="font-size: 1.1rem; padding: 1.1rem 2.4rem; display: inline-block; text-decoration: none;">
+    <span class="inline-en">Download Lokum</span>
+    <span class="inline-tr">Lokum’u İndir</span>
+  </a>
+</section>
+
+<footer>
+  <p><strong>LOKUM</strong> — <span class="inline-en">Made for humans.</span><span class="inline-tr">İnsanlar için yapıldı.</span></p>
+  <p style="margin-top: 0.4rem; opacity: 0.7;">© 2026 · <span class="inline-en">Your browser. Your way.</span><span class="inline-tr">Senin tarayıcın. Senin yolun.</span></p>
+</footer>
+
+<script>
+  function toggleLang() {
+    document.body.classList.toggle('tr');
+  }
+
+  function pickWall(el) {
+    document.querySelectorAll('.wall').forEach(w => w.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function pickColor(el, color) {
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    document.documentElement.style.setProperty('--accent', color);
+  }
+</script>
+</body>
+</html>
