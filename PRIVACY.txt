@@ -1,0 +1,88 @@
+LOKUM WINDOWS PRIVACY POLICY
+
+Effective date: August 23, 2026
+
+Lokum is a desktop web browser for Windows. This Privacy Policy explains what information Lokum processes, where it is stored, and what happens when you use websites through Lokum.
+
+Before publishing, replace the publisher details in the Contact section with the correct legal name and privacy contact address.
+
+1. INFORMATION LOKUM STORES LOCALLY
+
+Lokum stores the following information on your Windows device under the local LokumBrowser application-data folder:
+
+- Browsing history, including visited URLs, page titles, domains, and visit times.
+- Bookmarks and New Tab shortcuts.
+- Download history and local download file paths.
+- Local usage-time statistics by website domain.
+- Browser settings, including language, search engine, selected interests, personalization settings, and New Tab appearance settings.
+- Window state and temporary application state.
+- WebView2 browser-profile data, which may include cookies, cache, local storage, IndexedDB, service-worker data, and other website data created by websites you visit.
+- Error diagnostics written to a local error log when an application or browser component encounters a problem.
+
+This information is used to provide browser features such as history, bookmarks, downloads, suggestions, personalization, website storage, and window restoration. Lokum does not send this locally stored browser information to Lokum servers.
+
+2. INFORMATION SENT TO THIRD PARTIES
+
+Lokum does not operate a Lokum account service, advertising profile, or analytics service. Lokum does not sell personal information and does not add tracking specifically for the application.
+
+Some information may leave your device as part of normal browser operation:
+
+- Websites you visit: Website requests, IP address, cookies, and other information are sent directly to the website and its service providers according to their policies. Lokum does not control the privacy practices of those websites.
+- Search suggestions: When you type in the address bar, your query may be sent to the configured search provider to obtain suggestions. The configured provider may be Google, Bing, DuckDuckGo, Brave Search, Ecosia, or Startpage. Lokum's personalization setting controls the use of local interests and browsing history for relevance; direct navigation and searches you submit can also be processed by the selected search provider.
+- Favicon requests: New Tab shortcuts and address-bar results may request favicon images from Google's favicon service. The request may include the website domain and your network information.
+- Microsoft Store: The optional Share It! action opens Lokum's Microsoft Store listing in your default browser. Microsoft processes that visit under Microsoft's own privacy policy.
+
+Lokum does not send browsing history, bookmarks, download history, usage statistics, or error logs to these services as a Lokum telemetry package.
+
+3. AI, ADVERTISING, TRACKER, AND SCAM PROTECTION
+
+Lokum's optional AI content protection and its advertising, tracker, and scam protection features run within the application and WebView2 environment. They inspect relevant page or media content to make local protection decisions. The inspected content is not uploaded by Lokum to an AI provider or to a Lokum server.
+
+These protections can prevent requests to known advertising or tracking resources. Blocking does not guarantee that every advertisement, tracker, scam, or harmful website will be detected.
+
+4. WEBSITE PERMISSIONS AND WEBSITE DATA
+
+Websites may request permissions such as camera, microphone, location, notifications, or clipboard access. Lokum asks for user approval before allowing the supported permission requests. A website may process information obtained through an approved permission under its own privacy policy.
+
+Website cookies and storage are managed by the WebView2 runtime. Lokum does not use website cookies for Lokum advertising or cross-site profiling.
+
+5. INCOGNITO TABS
+
+Incognito tabs use a temporary WebView2 profile and are not added to Lokum's normal local history or normal cookie store by Lokum. Websites, network providers, employers, schools, and other parties may still be able to observe activity or retain information. Incognito mode is not anonymous browsing.
+
+6. YOUR CHOICES AND DELETION CONTROLS
+
+You can:
+
+- Clear browsing history, cache, and cookies from Lokum settings.
+- Clear download history from Lokum settings.
+- Use the Nuke This Site control to remove supported origin-specific cookies and page storage for a selected open website, including local storage, session storage, IndexedDB, cache entries, and service-worker registrations where the website and WebView2 expose them.
+- Delete bookmarks and New Tab shortcuts.
+- Change personalization settings and disable the optional AI protection feature.
+- Close Lokum and remove its local application-data folder using Windows controls.
+
+Some website data or permissions may be controlled by WebView2 or Windows and may not be removable through an origin-specific browser API. Lokum does not claim to delete data that it cannot associate with the selected website.
+
+7. DATA RETENTION
+
+Locally stored browser data remains on your device until you delete it, use a Lokum deletion control, uninstall or reset the application data, or remove it through Windows. Lokum does not retain a separate copy on a Lokum server.
+
+8. SECURITY
+
+Lokum uses the Windows file system and the Microsoft WebView2 runtime to store and process browser data. No method of storage or transmission is completely secure. You are responsible for protecting access to your Windows account and device.
+
+9. CHILDREN'S PRIVACY
+
+Lokum is a general-purpose desktop browser and is not directed specifically to children. Lokum does not knowingly collect personal information from children through a Lokum account or telemetry service. Websites visited through Lokum may collect information under their own policies.
+
+10. CHANGES TO THIS POLICY
+
+This policy may be updated when Lokum's data practices or features change. The effective date at the top of this document identifies the latest version.
+
+11. CONTACT
+
+Publisher: [Insert publisher legal name]
+
+Privacy contact: [Insert privacy email address]
+
+Microsoft Store listing: https://apps.microsoft.com/detail/9nb2dwr7945r
